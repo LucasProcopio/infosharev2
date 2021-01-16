@@ -1,0 +1,56 @@
+DEFINIÇÔES PARA O SERVIÇO CLOUD COMPUTING - INFO SHARE
+
+-----
+
+DESC:
+  Serviço de web (web service) para compartilhamento de projetos/atividades entre alunos.
+
+-----
+
+FUNCIONALIDADES:
+
+  01 - Armazenamento de atividades.
+
+  As atividades contém os seguintes campos para armazenamento de dados.
+  - Título da atividade
+  - Corpo da atividade (Descrição da atividade)
+  - Data de criação da atividade
+  - Data de atualização da atividade
+  - ID do autor da atividade
+  - Atividade publica ou privada 1/0
+  - Lista de IDs de alunos que contribuem para a atividade
+  - Atividade com data expirada SIM/NÃO 1/0
+  - Versionamento da atividade.
+
+  02 - Cadastro de alunos.
+
+  Os alunos contém os seguintes campos para armazenamento de dados.
+  - Primeiro Nome
+  - Último nome
+  - Nome do usuário para efetuar o login
+  - Senha do usuário (becrypt)
+  - E-mail do usuário
+  - ID do usuário
+  - Lista de IDs de atividades criadas pelo usuário.
+  - Data de criação
+
+  03 - Solicitação de permissão para visualizar atividade privada
+
+  Atividades privadas contém o seguinte relacionamento de dados
+  - ID da atividade privada
+  - ID do autor da atividade
+  - ID do aluno que requisitou a permissão para visualizar
+  - Requisição de permissão atendida? SIM/NÃO 1/0.
+  - Data de criação.
+
+  > Servico para permitir que  a atividade privada possa ser acessada pelo
+  usuario que fez a requisisao para editar a atividade
+
+  04 - Histórico de atividades.
+
+  O Histórico segue a mesma estrutura de atividades mas é armazenado
+  sempre que a atividade é atualizada sendo assim, guarda um histórico de
+  Versionamento.
+
+TAREFAS:
+https://www.notion.so/fb3dc167aaf54a739b1f7562feb533c3?v=f9eb73931e0943598b81fc031b5b5789
