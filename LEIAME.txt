@@ -52,5 +52,7 @@ FUNCIONALIDADES:
   sempre que a atividade é atualizada sendo assim, guarda um histórico de
   Versionamento.
 
+  05 - Login de usuários com JWT (JSON WEB TOKEN)
+  
 TAREFAS:
 https://www.notion.so/fb3dc167aaf54a739b1f7562feb533c3?v=f9eb73931e0943598b81fc031b5b5789
