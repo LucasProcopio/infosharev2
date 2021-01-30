@@ -1,6 +1,8 @@
 const db = require('../models');
 const { activityHelpers } = require('../helpers');
 const { response } = require('express');
+
+//TODO: tratamento de mensagens de erros e sucesso
 class activityService {
   async create(activity) {
     const response = { data: {}, err: false };
