@@ -18,16 +18,20 @@ module.exports = {
         type: Sequelize.TEXT
       },
       isPublic: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       isExpired: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       userlist: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "0",
       },
       version: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "1.0.0"
       },
       createdAt: {
         allowNull: false,

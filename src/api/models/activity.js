@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     body: DataTypes.TEXT,
     isPublic: DataTypes.BOOLEAN,
     isExpired: DataTypes.BOOLEAN,
-    userlist: DataTypes.STRING,
+    userList: DataTypes.STRING,
     version: DataTypes.STRING
   }, {
     sequelize,
