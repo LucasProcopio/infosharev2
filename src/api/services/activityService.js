@@ -36,7 +36,7 @@ class activityService {
 
   async delete({authorId, actId}) {
     const isValid = await activityHelpers.validateAuthor(authorId, actId);
-    if(typeof isValid === null) {
+    if(typeof isValid === false) {
       return "User does not have permission to delete this activity";
     }
     const response = { data: {}, err: false };

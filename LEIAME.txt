@@ -34,6 +34,10 @@ FUNCIONALIDADES:
   - Lista de IDs de atividades criadas pelo usuário.
   - Data de criação
 
+  --------
+
+  para seguranca do usuario a senhas sao criptografadas.
+
   03 - Solicitação de permissão para visualizar atividade privada
 
   Atividades privadas contém o seguinte relacionamento de dados
