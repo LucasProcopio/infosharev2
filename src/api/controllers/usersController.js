@@ -1,7 +1,7 @@
-const { request } = require('express');
-const userRouter = require('../routes/usersRouter');
+const jwt = require('jsonwebtoken')
 const userSchema = require('../schemas/usersSchema');
 const usersService = require('../services/usersService');
+const { validatePass }  = require('../helpers/hashPass');
 
 const createUser = async (req, res) => {
   const { value, error } = userSchema.validate(req.body);
@@ -25,4 +25,24 @@ const updateUser = async (req, res) => {
   return res.json('User successfully updated.');
 }
 
-module.exports = { createUser, updateUser };
+const userAuth = async (req, res) => {
+  const {email, password} = req.body;
+  const {data, err} = await usersService.findUser(email);
+  
+  if(err !== false) return res.status(500).json({ message: err});
+  if(data[0] === 0) return res.json('User not found.');
+
+  const isValid = await validatePass(password, data.password);
+  if(isValid === false) return res.json('E-mail or Password incorrect!');
+
+  const user = {
+    id: data.id,
+    fullname: `${data.firstname} ${data.lastname}`,
+    email: data.email
+  };
+
+  const token = jwt.sign({ data: user }, process.env.SECRET, { expiresIn: '1h' });
+  return res.json(token);
+}
+
+module.exports = { createUser, updateUser, userAuth };

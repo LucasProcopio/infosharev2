@@ -10,26 +10,31 @@ const createActivity = async (req, res) => {
     const {data , err} = await activityService.create(value);
 
     if(err !== false) return res.status(500).json({ message: err})
+    if(data[0] === 0) return res.json('Fail to create activity');
     return res.json(data);
 };
 
 const updateActivity = async (req, res) => {
   const updateData = req.body;
   const { actId } = req.params;
-  const { err} = await activityService.update({ authorId: updateData.authorId, actId, data: updateData })
+  const {data, err} = await activityService.update({ authorId: updateData.authorId, actId, data: updateData })
   if(err) {
     return res.status(400).json({ message: err});
   }
+
+  if(data[0] === 0) return res.json('Fail to update activity');
   return res.json('Activity successfully updated');
 }
 
 const deleteActivity = async (req, res) => {
   const { authorId } = req.body;
   const { actId } = req.params;
-  const {err} = await activityService.delete({ authorId, actId })
+  const {data, err} = await activityService.delete({ authorId, actId })
   if(err) {
     return res.status(400).json({ message: err});
   }
+  console.log(data)
+  if(data === 0) return res.json('Fail to delete activity not found');
   return res.json('Activity successfully Deleted');
 }
 

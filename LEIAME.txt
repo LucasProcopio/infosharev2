@@ -9,7 +9,7 @@ DESC:
 
 FUNCIONALIDADES:
 
-  01 - Armazenamento de atividades.
+  01 - Armazenamento de atividades. - OK
 
   As atividades contém os seguintes campos para armazenamento de dados.
   - Título da atividade
@@ -22,7 +22,7 @@ FUNCIONALIDADES:
   - Atividade com data expirada SIM/NÃO 1/0
   - Versionamento da atividade.
 
-  02 - Cadastro de alunos.
+  02 - Cadastro de alunos. OK
 
   Os alunos contém os seguintes campos para armazenamento de dados.
   - Primeiro Nome
@@ -38,7 +38,7 @@ FUNCIONALIDADES:
 
   para seguranca do usuario a senhas sao criptografadas.
 
-  03 - Solicitação de permissão para visualizar atividade privada
+  03 - Solicitação de permissão para visualizar atividade privada 
 
   Atividades privadas contém o seguinte relacionamento de dados
   - ID da atividade privada
@@ -50,13 +50,13 @@ FUNCIONALIDADES:
   > Servico para permitir que  a atividade privada possa ser acessada pelo
   usuario que fez a requisisao para editar a atividade
 
-  04 - Histórico de atividades.
+  04 - Histórico de atividades. - 
 
   O Histórico segue a mesma estrutura de atividades mas é armazenado
   sempre que a atividade é atualizada sendo assim, guarda um histórico de
   Versionamento.
 
-  05 - Login de usuários com JWT (JSON WEB TOKEN)
+  05 - Login de usuários com JWT (JSON WEB TOKEN) - 
   
 TAREFAS:
 https://www.notion.so/fb3dc167aaf54a739b1f7562feb533c3?v=f9eb73931e0943598b81fc031b5b5789

@@ -1,5 +1,4 @@
 const db = require('../models');
-
 class usersHelpers {
   verifyUser(userId) {
      try {
@@ -8,10 +7,8 @@ class usersHelpers {
            id: userid
          }
        });
-       console.log(data);
        return true;
      } catch (err) {
-      console.log(err.message);
        return false;
      }
   }

@@ -1,5 +1,5 @@
 const db = require('../models');
-const hashPass = require('../helpers/hashPass');
+const { hashPass } = require('../helpers/hashPass');
 const userHelper = require('../helpers/usersHelpers');
 
 class userService {
@@ -27,6 +27,20 @@ class userService {
       response.data = await db.User.update(data, {
         where: {
           id: userId
+        }
+      });
+      return response;
+    } catch(error) {
+      response.err = error.message;
+    }
+  }
+
+  async findUser( email ) {
+    const response = { data: {}, err: false };
+    try {
+      response.data = await db.User.findOne({
+        where: {
+          email: email
         }
       });
       return response;
