@@ -23,11 +23,8 @@ module.exports = {
       isExpired: {
         type: Sequelize.BOOLEAN
       },
-      userList: {
-        type: Sequelize.STRING
-      },
       version: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

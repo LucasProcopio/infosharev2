@@ -1,33 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Activities', {
+    await queryInterface.createTable('ActivityContributions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      authorId: {
+      activityId: {
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
-      body: {
-        type: Sequelize.TEXT
-      },
-      isPublic: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
-      },
-      isExpired: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-      },
-      version: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
+      userId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Activities');
+    await queryInterface.dropTable('ActivityContributions');
   }
 };

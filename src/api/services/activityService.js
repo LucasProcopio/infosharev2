@@ -1,13 +1,15 @@
 const db = require('../models');
 const { activityHelpers } = require('../helpers');
-const { response } = require('express');
-
-//TODO: tratamento de mensagens de erros e sucesso
 class activityService {
   async create(activity) {
     const response = { data: {}, err: false };
     try {
       response.data = await db.Activity.create(activity);
+      const { dataValues } = response.data;
+      await db.ActivityContribution.create({
+        activityId: dataValues.id,
+        userId: dataValues.authorId
+      });
       return response;
     } catch (error) {
       response.err = error.message
@@ -16,17 +18,52 @@ class activityService {
   }
 
   async update({authorId, actId, data}) {
-    const isValid = await activityHelpers.validateAuthor(authorId, actId);
-    if(typeof isValid === null) {
-      return "User does not have permission to update this activity";
-    }
+    const isValid = 
+      await activityHelpers.validateUpdatePermission(authorId, actId);
+
     const response = { data: {}, err: false };
+    if(isValid === null) {
+      response.err = "User does not have permission to update this activity";
+      return response;
+    }
+
     try {
+      // save old data
+      const oldData = await db.Activity.findOne({
+        where: {
+          id: actId
+        }
+      });
+      const {dataValues} = oldData;
+      data.version = dataValues.version + 1;
+
       response.data = await db.Activity.update(data, {
         where: {
           id: actId,
-          authorId: authorId
         }
+      });
+
+      // contributor
+      const addContributor = 
+        await activityHelpers.shouldAddActivityContribution(authorId, actId)
+      
+      if(addContributor === null) {
+        await db.ActivityContribution.create({
+          activityId: actId,
+          userId: authorId
+        })
+      }
+      
+      // history
+      dataValues.version++;
+      const { title, body, isPublic, isExpired, version } = dataValues;
+      await db.History.create({
+        authorId,
+        title,
+        body,
+        isPublic,
+        isExpired,
+        version
       });
       return response;
     } catch(error) {
@@ -35,7 +72,7 @@ class activityService {
   }
 
   async delete({authorId, actId}) {
-    const isValid = await activityHelpers.validateAuthor(authorId, actId);
+    const isValid = await activityHelpers.validateUpdatePermission(authorId, actId);
     if(typeof isValid === false) {
       return "User does not have permission to delete this activity";
     }

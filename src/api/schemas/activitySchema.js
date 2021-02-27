@@ -6,7 +6,6 @@ module.exports = joi.object({
   body: joi.string().required(),
   isPublic: joi.boolean(),
   isExpired: joi.boolean(),
-  userList: joi.string(),
   version: joi.string()
 });
 
