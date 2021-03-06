@@ -1,12 +1,13 @@
 const db = require('../models');
 class usersHelpers {
-  verifyUser(userId) {
+  async verifyUser({ userId, email }) {
+    const query = { where: { id: userId }};
+    if(email) {
+        query.where.email = email;
+    }
      try {
-       const data = db.User.findOne({
-         where: {
-           id: userid
-         }
-       });
+       const user = await db.User.findOne(query);
+       if(!user) return false
        return true;
      } catch (err) {
        return false;

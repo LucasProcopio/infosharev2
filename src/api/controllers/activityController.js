@@ -10,7 +10,7 @@ const createActivity = async (req, res) => {
     const {data , err} = await activityService.create(value);
 
     if(err !== false) return res.status(500).json({ message: err})
-    if(data[0] === 0) return res.json('Fail to create activity');
+    if(data === null || data[0] === 0) return res.json('Fail to create activity');
     return res.json(data);
 };
 
@@ -22,7 +22,7 @@ const updateActivity = async (req, res) => {
     return res.status(400).json({ message: err});
   }
 
-  if(data[0] === 0) return res.json('Fail to update activity');
+  if(data === null || data[0] === 0) return res.json('Fail to update activity');
   return res.json('Activity successfully updated');
 }
 

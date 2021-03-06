@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   History.init({
     authorId: DataTypes.INTEGER,
+    activityId: DataTypes.INTEGER,
     title: DataTypes.STRING,
     body: DataTypes.TEXT,
     isPublic: DataTypes.BOOLEAN,

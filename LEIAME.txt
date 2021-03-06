@@ -48,3 +48,10 @@ FUNCIONALIDADES:
   05 - Login de usuários com JWT (JSON WEB TOKEN) - OK
 
   06 - Validacao de acesso de usuarios para as rotas utilizando JWT
+   Rotas privadas com acesso somente via login
+   - Cadastro de atividades
+   - Atualizacao de atividades
+   - Listagem de atividades 
+   - Delete de atividades
+   - Atualizacao de usuarios
+

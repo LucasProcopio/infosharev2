@@ -20,18 +20,19 @@ const updateUser = async (req, res) => {
   const { userId } = req.params;
   const userData = req.body;
   const {data , err} = await usersService.update({userId, data: userData});
+  console.log('DATA', data);
   if(err !== false) return res.status(500).json({ message: err});
-  if(data[0] === 0) return res.json('Update failed');
+  if(data === null || data[0] === 0) return res.json('Update failed');
   return res.json('User successfully updated.');
 }
 
 const userAuth = async (req, res) => {
   const {email, password} = req.body;
   const {data, err} = await usersService.findUser(email);
-  
-  if(err !== false) return res.status(500).json({ message: err});
-  if(data[0] === 0) return res.json('User not found.');
 
+  if(err !== false) return res.status(500).json({ message: err});
+  if(data === null || data[0] === 0) return res.json('User not found.');
+  
   const isValid = await validatePass(password, data.password);
   if(isValid === false) return res.json('E-mail or Password incorrect!');
 

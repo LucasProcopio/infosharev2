@@ -18,11 +18,12 @@ class userService {
   }
 
   async update({ userId, data }) {
-    const isValid = await userHelper.verifyUser(userId);
-    if(isValid !== false) {
-      return "User not permitted to perform this action"; 
-    } 
+    const isValid = await userHelper.verifyUser({ userId });
     const response = { data: {}, err: false };
+    if(isValid === false) {
+       response.err = "User not permitted to perform this action"; 
+       return response;
+    } 
     try {
       response.data = await db.User.update(data, {
         where: {
@@ -32,6 +33,7 @@ class userService {
       return response;
     } catch(error) {
       response.err = error.message;
+      return response
     }
   }
 

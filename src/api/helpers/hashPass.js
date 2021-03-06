@@ -22,5 +22,6 @@ const validatePass = async (pass, hash) => {
 
   return isValid;
 }
+
 module.exports = { hashPass, validatePass }
 

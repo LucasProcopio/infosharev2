@@ -59,6 +59,7 @@ class activityService {
       const { title, body, isPublic, isExpired, version } = dataValues;
       await db.History.create({
         authorId,
+        activityId: actId,
         title,
         body,
         isPublic,

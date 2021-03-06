@@ -1,9 +1,10 @@
 const activityRouter = require('express').Router();
+const { validateToken } = require('../middlewares/validateTokenMiddleware');
 const { createActivity, updateActivity, deleteActivity, fetchActivities } = require('../controllers/activityController');
 
-activityRouter.post('/create/activity', createActivity);
-activityRouter.post('/update/activity/:actId', updateActivity);
-activityRouter.delete('/delete/activity/:actId', deleteActivity)
-activityRouter.get('/activities', fetchActivities)
+activityRouter.post('/create/activity',validateToken, createActivity);
+activityRouter.post('/update/activity/:actId', validateToken, updateActivity);
+activityRouter.delete('/delete/activity/:actId',validateToken, deleteActivity)
+activityRouter.get('/activities',validateToken,  fetchActivities)
 
 module.exports = activityRouter;
